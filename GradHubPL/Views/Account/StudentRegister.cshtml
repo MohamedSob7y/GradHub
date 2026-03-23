@@ -1,5 +1,30 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<section class="container mt-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+
+            <div class="card p-4 shadow-sm">
+                <h3 class="mb-3 text-center">Student Register</h3>
+
+                <input type="text" class="form-control mb-3" placeholder="Full Name" />
+                <input type="email" class="form-control mb-3" placeholder="Email" />
+                <input type="password" class="form-control mb-3" placeholder="Password" />
+
+                <select class="form-control mb-3">
+                    <option>Select Field</option>
+                    <option>Frontend</option>
+                    <option>Backend</option>
+                </select>
+
+                <button class="btn btn-primary w-100">Register</button>
+            </div>
+
+        </div>
+    </div>
+
+</section>

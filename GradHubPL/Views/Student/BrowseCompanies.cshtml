@@ -1,5 +1,61 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewBag.Title = "Students";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<section class="container mt-5">
+
+    <h2 class="mb-4">Browse Companies</h2>
+
+    <!-- SEARCH -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Search company..." />
+        </div>
+
+        <div class="col-md-3">
+            <select class="form-control">
+                <option>Industry</option>
+                <option>Tech</option>
+                <option>Marketing</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100">Search</button>
+        </div>
+    </div>
+
+    <!-- COMPANIES -->
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card p-3 shadow-sm mb-4">
+                <h5>Google</h5>
+                <p>Tech Company</p>
+                <p class="text-muted">Hiring Frontend Developers</p>
+                <button class="btn btn-primary w-100">View Jobs</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-3 shadow-sm mb-4">
+                <h5>Amazon</h5>
+                <p>E-commerce</p>
+                <p class="text-muted">Backend Engineers Needed</p>
+                <button class="btn btn-primary w-100">View Jobs</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-3 shadow-sm mb-4">
+                <h5>Meta</h5>
+                <p>Social Media</p>
+                <p class="text-muted">UI/UX Designers</p>
+                <button class="btn btn-primary w-100">View Jobs</button>
+            </div>
+        </div>
+
+    </div>
+
+</section>

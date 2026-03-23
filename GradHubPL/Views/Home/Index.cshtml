@@ -1,4 +1,4 @@
-﻿ @{
+﻿@{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,129 +6,121 @@
 <section class="hero-section">
     <div class="container">
         <div class="row align-items-center g-4">
+
+            <!-- LEFT -->
             <div class="col-lg-6">
-                <h1 class="hero-title">Connect Talent With Verified Companies</h1>
-                <p class="hero-subtitle">
-                    GRADHUB helps companies discover talented candidates through CVs, portfolios,
-                    ratings, and smart chatbot filtering.
+               
+                <h1 class="hero-title">
+                    Connect Talent With Verified Companies
+                </h1>
+
+                <p class="hero-text">
+                    Discover top students, explore their skills, and hire faster using smart filtering.
                 </p>
 
-                <div class="search-box">
-                    <div class="row g-3">
-                        <div class="col-md-5">
-                            <input type="text" class="form-control form-control-lg" placeholder="Search by skill or field">
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-select form-select-lg">
-                                <option>Select category</option>
-                                <option>Software</option>
-                                <option>Design</option>
-                                <option>Marketing</option>
-                                <option>Business</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-primary btn-lg w-100">Search</button>
-                        </div>
+                <!-- SEARCH -->
+                <div class="row g-2 mt-3">
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" placeholder="Search by skill" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <select class="form-control">
+                            <option>Select category</option>
+                            <option>Frontend</option>
+                            <option>Backend</option>
+                            <option>UI/UX</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button class="btn btn-primary w-100">Search</button>
                     </div>
                 </div>
+
+                <!-- STATS -->
+                <div class="row mt-4 text-center">
+                    <div class="col">
+                        <h4>2K+</h4>
+                        <small>Profiles</small>
+                    </div>
+                    <div class="col">
+                        <h4>300+</h4>
+                        <small>Companies</small>
+                    </div>
+                    <div class="col">
+                        <h4>Fast</h4>
+                        <small>AI Filtering</small>
+                    </div>
+                </div>
+
             </div>
 
+            <!-- RIGHT -->
             <div class="col-lg-6 text-center">
-                <img src="~/Content/images/hero-gradhub.png" class="img-fluid" style="max-height:420px;" alt="GRADHUB Hero">
+
+                <div class="hero-card">
+                    <h5>Top Candidate</h5>
+                    <h4>Ahmed Ali</h4>
+                    <p>Frontend Developer</p>
+                    <p>⭐ 4.8</p>
+                    <p class="text-muted">React • JS • Bootstrap</p>
+                </div>
+
             </div>
+
         </div>
     </div>
 </section>
 
-<section class="py-5">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="stat-box">
-                    <h3 class="fw-bold text-primary">2K+</h3>
-                    <p class="mb-0 text-muted">Candidate Profiles</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="stat-box">
-                    <h3 class="fw-bold text-primary">300+</h3>
-                    <p class="mb-0 text-muted">Verified Companies</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="stat-box">
-                    <h3 class="fw-bold text-primary">Fast</h3>
-                    <p class="mb-0 text-muted">AI-Assisted Filtering</p>
-                </div>
+<!-- FEATURED -->
+<section class="container mt-5">
+
+    <h2 class="mb-4">Featured Candidates</h2>
+
+    <div class="row">
+
+        <!-- CARD -->
+        <div class="col-md-3">
+            <div class="candidate-card">
+                <h5>Ahmed Ali</h5>
+                <p>Frontend Developer</p>
+                <p>⭐ 4.8</p>
+                <p class="text-muted">React JS</p>
+                <button class="btn btn-primary w-100">View</button>
             </div>
         </div>
+
+        <div class="col-md-3">
+            <div class="candidate-card">
+                <h5>Sara Khaled</h5>
+                <p>UI/UX Designer</p>
+                <p>⭐ 4.7</p>
+                <p class="text-muted">Figma</p>
+                <button class="btn btn-primary w-100">View</button>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="candidate-card">
+                <h5>Omar Hassan</h5>
+                <p>.NET Developer</p>
+                <p>⭐ 4.9</p>
+                <p class="text-muted">C# SQL</p>
+                <button class="btn btn-primary w-100">View</button>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="candidate-card">
+                <h5>Maya Adel</h5>
+                <p>Digital Marketer</p>
+                <p>⭐ 4.6</p>
+                <p class="text-muted">SEO</p>
+                <button class="btn btn-primary w-100">View</button>
+            </div>
+        </div>
+
     </div>
+
 </section>
-
-<section class="pb-5">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="section-title">Featured Candidates</h2>
-            <a href="@Url.Action("BrowseStudents", "Company")" class="btn btn-outline-primary rounded-pill">View All</a>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-                <div class="card-custom p-4 h-100">
-                    <img src="https://via.placeholder.com/120" class="profile-img mb-3" alt="">
-                    <h5 class="fw-bold">Ahmed Ali</h5>
-                    <p class="text-muted mb-2">Frontend Developer</p>
-                    <div class="rating-stars mb-2">★★★★★ <span class="text-muted">4.8</span></div>
-                    <div>
-                        <span class="badge-skill">React</span>
-                        <span class="badge-skill">JavaScript</span>
-                    </div>
-                    <a class="btn btn-primary w-100 rounded-pill mt-3" href="#">View Profile</a>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-                <div class="card-custom p-4 h-100">
-                    <img src="https://via.placeholder.com/120" class="profile-img mb-3" alt="">
-                    <h5 class="fw-bold">Sara Khaled</h5>
-                    <p class="text-muted mb-2">UI/UX Designer</p>
-                    <div class="rating-stars mb-2">★★★★★ <span class="text-muted">4.7</span></div>
-                    <div>
-                        <span class="badge-skill">Figma</span>
-                        <span class="badge-skill">Behance</span>
-                    </div>
-                    <a class="btn btn-primary w-100 rounded-pill mt-3" href="#">View Profile</a>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-                <div class="card-custom p-4 h-100">
-                    <img src="https://via.placeholder.com/120" class="profile-img mb-3" alt="">
-                    <h5 class="fw-bold">Omar Hassan</h5>
-                    <p class="text-muted mb-2">.NET Developer</p>
-                    <div class="rating-stars mb-2">★★★★★ <span class="text-muted">4.9</span></div>
-                    <div>
-                        <span class="badge-skill">C#</span>
-                        <span class="badge-skill">SQL</span>
-                    </div>
-                    <a class="btn btn-primary w-100 rounded-pill mt-3" href="#">View Profile</a>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-                <div class="card-custom p-4 h-100">
-                    <img src="https://via.placeholder.com/120" class="profile-img mb-3" alt="">
-                    <h5 class="fw-bold">Maya Adel</h5>
-                    <p class="text-muted mb-2">Digital Marketer</p>
-                    <div class="rating-stars mb-2">★★★★★ <span class="text-muted">4.6</span></div>
-                    <div>
-                        <span class="badge-skill">SEO</span>
-                        <span class="badge-skill">Content</span>
-                    </div>
-                    <a class="btn btn-primary w-100 rounded-pill mt-3" href="#">View Profile</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> 

@@ -1,5 +1,52 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewBag.Title = "Companies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<section class="container mt-5">
+
+    <h2 class="mb-4">Browse Students</h2>
+
+    <!-- SEARCH -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Search student..." />
+        </div>
+
+        <div class="col-md-3">
+            <select class="form-control">
+                <option>Skill</option>
+                <option>Frontend</option>
+                <option>Backend</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100">Search</button>
+        </div>
+    </div>
+
+    <!-- STUDENTS -->
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="candidate-card">
+                <h5>Ahmed Ali</h5>
+                <p>Frontend Developer</p>
+                <p>⭐ 4.8</p>
+                <button class="btn btn-primary w-100">View Profile</button>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="candidate-card">
+                <h5>Sara Khaled</h5>
+                <p>UI/UX Designer</p>
+                <p>⭐ 4.7</p>
+                <button class="btn btn-primary w-100">View Profile</button>
+            </div>
+        </div>
+
+    </div>
+
+</section>
