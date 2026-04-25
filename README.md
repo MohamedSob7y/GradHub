@@ -1,42 +1,31 @@
-Project Name 
-. 
-  
-Project Idea 
-..........................................................................................................................                   
-          ..................................................................................................................                 
- 
-Team Members 
-1.	  
-2.	  
-3.	
-  
-Project Plan 
+# 🎓 GradHub
+Connecting the next generation of tech talent with top HR recruiters.
 
-1.	Research & Analysis 
-o	Audience personas 
-2.	Visual Identity 
-o	Logo design 
-3.	Main Designs 
-o	Poster 
-4.	Complementary Products 
-5.	Review & Finalization 
-6.	Final Presentation 
-  
-Roles & Responsibilities 
-•	  
- 
- 
-•	KPIs (Key Performance Indicators) – Metrics for project success (e.g., response time, system uptime, user adoption rate). 
- 
-  
- 
- 
-Instructor  
-* 
- 
-  
- 
- 
-Project Files 
-You can find the full project files here: 
--------- 
+## 📝 Project Overview
+**GradHub** is a centralized web platform designed to bridge the gap between IT/Computer Science students and HR professionals. 
+
+* **For Recruiters:** Browse verified student profiles, view CVs, and explore graduation projects to find the perfect match without waiting for unqualified applicants.
+* **For Students:** Showcase your skills, upload your CV and graduation project, and connect directly with companies.
+
+## 👥 Team Members
+**Mohamed Sobhy** 
+**Hania Mohamed** 
+**Rawan Khaled** 
+**Ameera El Ghamry** 
+**Ekram Zidane** 
+
+**Instructor:** Eng/ Ashraf Sadek
+
+## 🛠️ Tech Stack
+* **Backend:** .NET Core / C#
+* **Architecture:** 3-Tier Architecture
+* **Database:** SQL Server
+* **AI Integration:** Smart Chatbot for candidate/company recommendations
+
+
+## 📂 Project Files & Documentation
+Access the core documentation and planning assets below:
+
+* 📄 **[Requirements Gathering pdf](./Docs/Requirements_Gathering.pdf)**
+
+
