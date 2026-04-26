@@ -1,11 +1,6 @@
 ﻿using GradHubDAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GradHubDAL.Configurations
 {
@@ -20,11 +15,7 @@ namespace GradHubDAL.Configurations
             builder.Property(r => r.Value)
                    .IsRequired();
 
-            builder.Property(r => r.Comment)
-                   .HasMaxLength(500);
-
-            builder.Property(r => r.CreatedAt)
-                   .HasDefaultValueSql("GETDATE()");
+            builder.HasCheckConstraint("CK_Ratings_Value", "[Value] >= 1 AND [Value] <= 5");
 
             builder.HasOne(r => r.FromUser)
                    .WithMany(u => u.RatingsGiven)
@@ -35,7 +26,6 @@ namespace GradHubDAL.Configurations
                    .WithMany(u => u.RatingsReceived)
                    .HasForeignKey(r => r.ToUserId)
                    .OnDelete(DeleteBehavior.Restrict);
-
         }
     }
 }

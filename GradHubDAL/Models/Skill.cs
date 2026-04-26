@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GradHubDAL.Models
+﻿namespace GradHubDAL.Models
 {
     public class Skill
     {
@@ -12,7 +6,6 @@ namespace GradHubDAL.Models
 
         public string Name { get; set; } = null!;
 
-        // Navigation
-        public ICollection<StudentSkill> StudentSkills { get; set; } = new List<StudentSkill>();
+        public ICollection<CandidateSkill> CandidateSkills { get; set; } = new List<CandidateSkill>();
     }
 }

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GradHubDAL.Models
+﻿namespace GradHubDAL.Models
 {
-    public class StudentProfile
+    
+    public class CandidateProfile
     {
         public int Id { get; set; }
 
@@ -22,6 +17,8 @@ namespace GradHubDAL.Models
 
         public string? PortfolioLink { get; set; }
 
+        public string? GraduationProjectLink { get; set; }
+
         public string? LinkedInLink { get; set; }
 
         public string? WhatsAppNumber { get; set; }
@@ -32,9 +29,8 @@ namespace GradHubDAL.Models
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        // Navigation
         public User User { get; set; } = null!;
 
-        public ICollection<StudentSkill> StudentSkills { get; set; } = new List<StudentSkill>();
+        public ICollection<CandidateSkill> CandidateSkills { get; set; } = new List<CandidateSkill>();
     }
 }

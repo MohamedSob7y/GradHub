@@ -1,11 +1,6 @@
 ﻿using GradHubDAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GradHubDAL.Configurations
 {
@@ -28,7 +23,7 @@ namespace GradHubDAL.Configurations
             builder.HasIndex(u => u.Email)
                    .IsUnique();
 
-            builder.Property(u => u.Password)
+            builder.Property(u => u.PasswordHash)
                    .IsRequired();
 
             builder.Property(u => u.Role)
@@ -39,5 +34,4 @@ namespace GradHubDAL.Configurations
                    .HasDefaultValueSql("GETDATE()");
         }
     }
-
 }

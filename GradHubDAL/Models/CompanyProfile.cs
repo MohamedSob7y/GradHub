@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GradHubDAL.Models
+﻿namespace GradHubDAL.Models
 {
     public class CompanyProfile
     {
@@ -14,9 +8,9 @@ namespace GradHubDAL.Models
 
         public string CompanyName { get; set; } = null!;
 
-        public string? Description { get; set; }
-
         public string Industry { get; set; } = null!;
+
+        public string? Description { get; set; }
 
         public string? WebsiteLink { get; set; }
 
@@ -26,7 +20,7 @@ namespace GradHubDAL.Models
 
         public string? ContactEmail { get; set; }
 
-        public string VerificationStatus { get; set; } = "Pending"; // Pending, Approved, Rejected
+        public string VerificationStatus { get; set; } = "Pending";
 
         public bool IsVerified { get; set; } = false;
 
@@ -34,7 +28,6 @@ namespace GradHubDAL.Models
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        // Navigation
         public User User { get; set; } = null!;
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GradHubDAL.Models
+﻿namespace GradHubDAL.Models
 {
     public class User
     {
@@ -14,14 +8,13 @@ namespace GradHubDAL.Models
 
         public string Email { get; set; } = null!;
 
-        public string Password { get; set; } = null!;
+        public string PasswordHash { get; set; } = null!;
 
-        public string Role { get; set; } = null!; // Student, Company, Admin
+        public string Role { get; set; } = null!;
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        // Navigation Properties
-        public StudentProfile? StudentProfile { get; set; }
+        public CandidateProfile? CandidateProfile { get; set; }
 
         public CompanyProfile? CompanyProfile { get; set; }
 
