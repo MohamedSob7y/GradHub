@@ -3,48 +3,48 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewBag.Title - GRADHUB</title>
+    <title>@ViewData["Title"] - GRADHUB</title>
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
+
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="/">
-                <img src="~/images/logo.png" class="nav-logo" />
-                GRADHUB
-            </a>
+    <!-- NAVBAR (single source of truth) -->
+    <nav class="gh-navbar">
+        <div class="gh-logo">
+            <img src="~/images/logo.png" alt="logo" />
+            <span>GRADHUB</span>
+        </div>
 
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Student/BrowseCompanies">Students</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Company/BrowseStudents">Companies</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Account/Login">Login</a></li>
-                    <li class="nav-item ms-3">
-                        <a class="btn btn-primary rounded-pill px-4" href="/Account/StudentRegister">
-                            Join Now
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        <ul class="gh-nav-links">
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Student" asp-action="BrowseCompanies">Candidates</a></li>
+            <li><a asp-controller="Company" asp-action="BrowseStudents">Companies</a></li>
+        </ul>
+
+        <div class="gh-nav-actions">
+            <a asp-controller="Account" asp-action="Login" class="gh-login">Login</a>
+            <a asp-controller="Account" asp-action="StudentRegister" class="gh-join">Join Now</a>
         </div>
     </nav>
 
-    <!-- BODY -->
-    <div>
+    <main>
         @RenderBody()
-    </div>
+    </main>
 
-    <!-- CHAT BUTTON -->
+    <!-- Chat -->
     <div id="chat-toggle">💬</div>
 
-    <!-- CHAT BOX -->
     <div id="chat-container">
-
         <div class="chat-header">
             GradHub Assistant
             <span id="close-chat">✖</span>
@@ -57,29 +57,16 @@
         <div class="chat-footer">
             <input type="text" placeholder="Type a message..." />
         </div>
-
     </div>
-
-    <!-- JS -->
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         const chatToggle = document.getElementById("chat-toggle");
         const chatContainer = document.getElementById("chat-container");
         const closeChat = document.getElementById("close-chat");
 
-        chatToggle.onclick = () => {
-            chatContainer.style.display = "flex";
-        };
-
-        closeChat.onclick = () => {
-            chatContainer.style.display = "none";
-        };
+        chatToggle.onclick = () => chatContainer.style.display = "flex";
+        closeChat.onclick = () => chatContainer.style.display = "none";
     </script>
 
 </body>
 </html>
-
-
-
-
