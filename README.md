@@ -26,6 +26,6 @@ Connecting the next generation of tech talent with top HR recruiters.
 ## 📂 Project Files & Documentation
 Access the core documentation and planning assets below:
 
-* 📄 **[Requirements Gathering pdf](./Docs/Requirements_Gathering.pdf)**
+* 📄 **[Requirements Gathering pdf](./Docs/Requirements_Gathering.pdf)** https://drive.google.com/file/d/1i602wyeKytZYAryfSHTi1oQALl3ByPyd/view?usp=sharing
 
 
