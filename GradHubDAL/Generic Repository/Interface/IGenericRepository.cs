@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
 namespace GradHubDAL.Generic_Repository.Interface
 {
@@ -12,8 +7,17 @@ namespace GradHubDAL.Generic_Repository.Interface
         void Add(T entity);
         void Update(T entity);
         void Delete(T entity);
-        IEnumerable<T> GetAll();
-        IEnumerable<T> GetAll(Func<T, bool>? Condition = null);
+
+        /// <summary>
+        /// Returns an IQueryable so callers can compose further operators
+        /// (pagination, ordering, projection) before the query executes.
+        /// Uses Expression so EF Core translates the predicate to SQL rather
+        /// than loading the full table into memory.
+        /// </summary>
+        IQueryable<T> GetAll(
+            Expression<Func<T, bool>>? condition = null,
+            params Expression<Func<T, object>>[] includes);
+
         T? GetById(int id);
     }
 }

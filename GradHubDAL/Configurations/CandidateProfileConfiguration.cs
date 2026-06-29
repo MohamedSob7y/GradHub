@@ -21,10 +21,6 @@ namespace GradHubDAL.Configurations
             builder.Property(c => c.Bio)
                    .HasMaxLength(1000);
 
-            builder.Property(c => c.AverageRating)
-                   .HasColumnType("decimal(3,2)")
-                   .HasDefaultValue(0);
-
             builder.Property(c => c.CreatedAt)
                    .HasDefaultValueSql("GETDATE()");
 

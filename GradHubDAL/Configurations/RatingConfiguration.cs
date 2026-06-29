@@ -17,6 +17,10 @@ namespace GradHubDAL.Configurations
 
             builder.HasCheckConstraint("CK_Ratings_Value", "[Value] >= 1 AND [Value] <= 5");
 
+            // Each user can only rate another user once
+            builder.HasIndex(r => new { r.FromUserId, r.ToUserId })
+                   .IsUnique();
+
             builder.HasOne(r => r.FromUser)
                    .WithMany(u => u.RatingsGiven)
                    .HasForeignKey(r => r.FromUserId)
