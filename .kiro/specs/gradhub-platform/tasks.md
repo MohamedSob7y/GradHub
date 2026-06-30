@@ -27,27 +27,27 @@
   - `ProjectSkill.cs`: Id, GraduationProjectId, SkillId
   - `ProjectSkillConfiguration.cs`: cascade delete from GraduationProject, restrict delete from Skill, unique constraint on (GraduationProjectId, SkillId)
 
-- [ ] 1.4 Clean up `CandidateProfile` model
+- [x] 1.4 Clean up `CandidateProfile` model
   - Remove `CvFilePath` field (no file upload in MVP)
   - Remove `AverageRating` field (ratings removed from V1)
 
-- [ ] 1.5 Clean up `CompanyProfile` model
+- [x] 1.5 Clean up `CompanyProfile` model
   - Remove `VerificationStatus` field
   - Remove `IsVerified` field
   - Remove `AverageRating` field
 
-- [ ] 1.6 Register new DbSets and add skill seed data
+- [x] 1.6 Register new DbSets and add skill seed data
   - Add `DbSet<GraduationProject>` and `DbSet<ProjectSkill>` to `GradHubContext.cs`
   - Remove `DbSet<Rating>` from `GradHubContext.cs` (drop the Rating table)
   - Add `modelBuilder.Entity<Skill>().HasData(...)` with 15–20 common tech skills (C#, React, Python, Java, SQL, JavaScript, TypeScript, Node.js, Angular, Docker, Git, Machine Learning, Flutter, Swift, Kotlin)
   - Run `dotnet ef migrations add MVPSchema` and verify the migration SQL looks correct
 
-- [ ] 1.7 Remove `Rating`, `Conversation`, `Message` model files
+- [x] 1.7 Remove `Rating`, `Conversation`, `Message` model files
   - Delete `GradHubDAL/Models/Rating.cs`
   - Delete `GradHubDAL/Configurations/RatingConfiguration.cs`
   - _Note: Conversation and Message models may not exist yet — skip if so_
 
-- [ ] 1.8 **Checkpoint**: `dotnet build GradHubDAL` passes with zero errors before moving on.
+- [x] 1.8 **Checkpoint**: `dotnet build GradHubDAL` passes with zero errors before moving on.
 
 ---
 
@@ -80,7 +80,7 @@
   - `IUnitOfWork`/`UnitOfWork`, `IAuthService`/`AuthService`, `IStudentService`/`StudentService`, `IRecruiterService`/`RecruiterService`, `IProjectService`/`ProjectService`, `ISkillService`/`SkillService`
   - Add `BCrypt.Net-Next` NuGet package
 
-- [ ] 2.7 **Checkpoint**: `dotnet build GradHub.sln` passes with zero errors.
+- [x] 2.7 **Checkpoint**: `dotnet build GradHub.sln` passes with zero errors.
 
 ---
 
@@ -247,10 +247,10 @@
 
 > Do not start these until all Phase 1 tasks are marked complete.
 
-- [ ] M1 Add `Conversation` and `Message` models + EF configuration + migration
-- [ ] M2 Implement `MessagingService` (StartConversation, Reply, ListConversations, GetConversation)
-- [ ] M3 Implement `MessagingController` (`/api/conversations`)
-- [ ] M4 Implement `messaging/` React feature folder (InboxPage, ConversationPage)
+- [ ] 9.1 Add `Conversation` and `Message` models + EF configuration + migration
+- [ ] 9.2 Implement `MessagingService` (StartConversation, Reply, ListConversations, GetConversation)
+- [ ] 9.3 Implement `MessagingController` (`/api/conversations`)
+- [ ] 9.4 Implement `messaging/` React feature folder (InboxPage, ConversationPage)
 
 ---
 

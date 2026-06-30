@@ -10,7 +10,7 @@
 
         public string PasswordHash { get; set; } = null!;
 
-        /// <summary>"Student" | "Recruiter" | "Admin"</summary>
+        /// <summary>"Student" | "Recruiter"</summary>
         public string Role { get; set; } = null!;
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
@@ -19,13 +19,7 @@
         public CandidateProfile? CandidateProfile { get; set; }
         public CompanyProfile? CompanyProfile { get; set; }
 
-        // Ratings
-        public ICollection<Rating> RatingsGiven { get; set; } = new List<Rating>();
-        public ICollection<Rating> RatingsReceived { get; set; } = new List<Rating>();
-
-        // Messaging
-        public ICollection<Conversation> ConversationsAsRecruiter { get; set; } = new List<Conversation>();
-        public ICollection<Conversation> ConversationsAsStudent { get; set; } = new List<Conversation>();
-        public ICollection<Message> MessagesSent { get; set; } = new List<Message>();
+        // Removed: Ratings navigation — Phase 3, dropped from MVP
+        // Removed: Messaging navigation — Phase 2, deferred
     }
 }
