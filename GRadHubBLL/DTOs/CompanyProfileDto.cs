@@ -1,0 +1,16 @@
+namespace GRadHubBLL.DTOs
+{
+    public class CompanyProfileDto
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public string CompanyName { get; set; } = null!;
+        public string Industry { get; set; } = null!;
+        public string? Description { get; set; }
+        public string? WebsiteLink { get; set; }
+        public string? LinkedInLink { get; set; }
+        public string? WhatsAppNumber { get; set; }
+        public string? ContactEmail { get; set; }
+        public DateTime CreatedAt { get; set; }
+    }
+}
