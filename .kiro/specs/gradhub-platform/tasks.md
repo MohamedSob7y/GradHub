@@ -115,20 +115,20 @@
 
 ### Wave 4 — Student BLL + Controller
 
-- [ ] 4.1 Implement `StudentService.GetProfileAsync(int userId)`
+- [x] 4.1 Implement `StudentService.GetProfileAsync(int userId)`
   - Load `CandidateProfile` by UserId including `CandidateSkills` → `Skill`
   - Map to `CandidateProfileDto`; throw `NotFoundException` if profile missing
 
-- [ ] 4.2 Implement `StudentService.UpdateProfileAsync(int userId, UpdateProfileDto dto)`
+- [x] 4.2 Implement `StudentService.UpdateProfileAsync(int userId, UpdateProfileDto dto)`
   - Validate: `Field` (1–100 chars), `Bio` (≤1000 chars), URL fields (valid URI format)
   - Update and persist; return updated DTO
 
-- [ ] 4.3 Implement `StudentService.AddSkillAsync(int userId, int skillId)`
+- [x] 4.3 Implement `StudentService.AddSkillAsync(int userId, int skillId)`
   - Check skill exists (404 if not)
   - Check not already linked (409 if so)
   - Create `CandidateSkill` record; persist
 
-- [ ] 4.4 Implement `StudentService.RemoveSkillAsync(int userId, int skillId)`
+- [x] 4.4 Implement `StudentService.RemoveSkillAsync(int userId, int skillId)`
   - Check link exists (404 if not); delete; persist
 
 - [ ] 4.5 Implement `StudentController`
