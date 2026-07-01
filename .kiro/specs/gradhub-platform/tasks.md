@@ -142,14 +142,14 @@
 
 ### Wave 5 — Recruiter BLL + Controller
 
-- [ ] 5.1 Implement `RecruiterService.GetProfileAsync(int userId)`
+- [x] 5.1 Implement `RecruiterService.GetProfileAsync(int userId)`
   - Load `CompanyProfile` by UserId; throw `NotFoundException` if missing
 
-- [ ] 5.2 Implement `RecruiterService.UpdateProfileAsync(int userId, UpdateCompanyDto dto)`
+- [x] 5.2 Implement `RecruiterService.UpdateProfileAsync(int userId, UpdateCompanyDto dto)`
   - Validate `CompanyName` (1–150, required), `Industry` (required)
   - Update and persist; return updated DTO
 
-- [ ] 5.3 Implement `RecruiterController`
+- [x] 5.3 Implement `RecruiterController`
   - `GET /api/recruiters/me` — `[Authorize(Roles = "Recruiter")]`
   - `PUT /api/recruiters/me` — `[Authorize(Roles = "Recruiter")]`
 
