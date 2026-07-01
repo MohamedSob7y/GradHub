@@ -149,7 +149,7 @@
   - Validate `CompanyName` (1–150, required), `Industry` (required)
   - Update and persist; return updated DTO
 
-- [ ] 5.3 Implement `RecruiterController`
+- [x] 5.3 Implement `RecruiterController`
   - `GET /api/recruiters/me` — `[Authorize(Roles = "Recruiter")]`
   - `PUT /api/recruiters/me` — `[Authorize(Roles = "Recruiter")]`
 
