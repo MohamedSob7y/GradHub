@@ -142,7 +142,7 @@
 
 ### Wave 5 — Recruiter BLL + Controller
 
-- [ ] 5.1 Implement `RecruiterService.GetProfileAsync(int userId)`
+- [x] 5.1 Implement `RecruiterService.GetProfileAsync(int userId)`
   - Load `CompanyProfile` by UserId; throw `NotFoundException` if missing
 
 - [ ] 5.2 Implement `RecruiterService.UpdateProfileAsync(int userId, UpdateCompanyDto dto)`
