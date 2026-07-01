@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- IFormFile lives in ASP.NET Core Http Abstractions -->
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GradHubDAL\GradHubDAL.csproj" />
   </ItemGroup>
 

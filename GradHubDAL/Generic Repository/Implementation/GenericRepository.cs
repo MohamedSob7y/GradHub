@@ -1,62 +1,44 @@
 ﻿using GradHubDAL.Context;
 using GradHubDAL.Generic_Repository.Interface;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GradHubDAL.Generic_Repository.Implementation
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly GradHubContext _gradHubContext;
+        private readonly GradHubContext _context;
 
-        public GenericRepository(GradHubContext gradHubContext)
+        public GenericRepository(GradHubContext context)
         {
-          _gradHubContext = gradHubContext;
+            _context = context;
         }
 
-        public void Add(T entity)
+        public void Add(T entity) =>
+            _context.Set<T>().Add(entity);
+
+        public void Update(T entity) =>
+            _context.Set<T>().Update(entity);
+
+        public void Delete(T entity) =>
+            _context.Set<T>().Remove(entity);
+
+        public IQueryable<T> GetAll(
+            Expression<Func<T, bool>>? condition = null,
+            params Expression<Func<T, object>>[] includes)
         {
-            _gradHubContext.Set<T>().Add(entity);
+            IQueryable<T> query = _context.Set<T>().AsNoTracking();
+
+            foreach (var include in includes)
+                query = query.Include(include);
+
+            if (condition is not null)
+                query = query.Where(condition);
+
+            return query;
         }
 
-        public void Delete(T entity)
-        {
-            _gradHubContext.Set<T>().Remove(entity);
-
-        }
-
-        public IEnumerable<T> GetAll() => _gradHubContext.Set<T>().ToList();
-
-        public IEnumerable<T> GetAll(Func<T, bool>? Condition = null)
-        {
-
-            if (Condition is null)
-            {
-                return _gradHubContext.Set<T>().AsNoTracking()
-                    .ToList();
-            }
-            else
-            {
-                return _gradHubContext.Set<T>().AsNoTracking().Where(Condition)
-                    .ToList();
-              
-            }
-        }
-
-        public T? GetById(int id) => _gradHubContext.Set<T>().Find(id);
-
-
-        public void Update(T entity)
-        {
-            _gradHubContext.Set<T>().Update(entity);
-
-        }
-
-
+        public T? GetById(int id) =>
+            _context.Set<T>().Find(id);
     }
 }

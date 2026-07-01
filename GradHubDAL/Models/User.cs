@@ -10,16 +10,16 @@
 
         public string PasswordHash { get; set; } = null!;
 
+        /// <summary>"Student" | "Recruiter"</summary>
         public string Role { get; set; } = null!;
 
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+        // Profile navigations (one-to-one, mutually exclusive by role)
         public CandidateProfile? CandidateProfile { get; set; }
-
         public CompanyProfile? CompanyProfile { get; set; }
 
-        public ICollection<Rating> RatingsGiven { get; set; } = new List<Rating>();
-
-        public ICollection<Rating> RatingsReceived { get; set; } = new List<Rating>();
+        // Removed: Ratings navigation — Phase 3, dropped from MVP
+        // Removed: Messaging navigation — Phase 2, deferred
     }
 }

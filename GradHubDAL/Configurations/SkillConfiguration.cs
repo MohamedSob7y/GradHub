@@ -16,7 +16,10 @@ namespace GradHubDAL.Configurations
                    .IsRequired()
                    .HasMaxLength(100);
 
-            builder.HasIndex(s => s.Name).IsUnique();
+            // Case-insensitive uniqueness is enforced at the BLL layer;
+            // the DB index enforces binary uniqueness as a safety net.
+            builder.HasIndex(s => s.Name)
+                   .IsUnique();
         }
     }
 }
