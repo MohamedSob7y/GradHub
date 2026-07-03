@@ -199,10 +199,10 @@
 
 ### Wave 7 — Skills BLL + Controller
 
-- [ ] 7.1 Implement `SkillService.GetAllAsync()`
+- [x] 7.1 Implement `SkillService.GetAllAsync()`
   - Return all `Skill` records; empty array if none
 
-- [ ] 7.2 Implement `SkillController`
+- [x] 7.2 Implement `SkillController`
   - `GET /api/skills` — public, no `[Authorize]`
 
 ---
