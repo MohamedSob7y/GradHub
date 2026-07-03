@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/ui/navbar";
 import { Counter } from "@/components/counter";
 import { FeatureCard } from "@/components/ui/featureCard"; // Ensure this path is correct
@@ -61,6 +62,7 @@ const featureData = [
 ];
 
 export default function App() {
+  const navigate = useNavigate();
   return (
     <div>
       <div
@@ -142,6 +144,7 @@ export default function App() {
                 data-id="2806308e-a601-510d-85b6-7759dbab21c0"
               >
                 <Button
+                  onClick={() => navigate("/signup")}
                   className="shadow-lg font-semibold rounded-xl bg-[#f0b100] text-white text-base leading-6 px-8 py-6 cursor-pointer transition-all hover:scale-105 hover:bg-[#d69e00]"
                   data-id="af5493cf-09dd-5ce5-9fd4-f47c4f862008"
                 >
@@ -152,6 +155,7 @@ export default function App() {
                   Create Student Profile
                 </Button>
                 <Button
+                  onClick={() => navigate("/login")}
                   className="font-semibold rounded-xl text-[#f0b100] text-base leading-6 border-[#f0b100] border-2 border-solid px-8 py-6 cursor-pointer transition-all hover:scale-105 hover:bg-[#d69e00]"
                   variant="outline"
                   data-id="bfe2ebdd-fc9b-5db8-8d3a-e67df1271d37"
@@ -485,6 +489,7 @@ export default function App() {
                 data-id="3d564d99-08cd-5ecc-b39d-bcef18512a66"
               >
                 <Button
+                  onClick={() => navigate("/signup")}
                   className="shadow-lg font-semibold rounded-xl bg-[#f0b100] text-white text-base leading-6 px-8 py-6 cursor-pointer transition-all hover:scale-105 hover:bg-[#d69e00]"
                   data-id="a5bab9b2-e51e-5fa8-b5a6-04583059b0ef"
                 >

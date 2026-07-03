@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import Navbar from "@/components/ui/navbar";
 import {
     GraduationCap,
@@ -20,15 +21,42 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { login } from "../auth/authApi";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle authentication logic here
-        console.log("Logging in with:", { email, password });
+        setError("");
+        setLoading(true);
+        try {
+            const result = await login({ email, password });
+
+            // Decode role from the stored token to decide where to redirect
+            const payload = JSON.parse(
+                atob(result.token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))
+            );
+            if (payload.role === "Student") {
+                navigate("/profile");
+            } else {
+                navigate("/browse");
+            }
+        } catch (err) {
+            if (err.response?.status === 401) {
+                setError("Invalid email or password.");
+            } else if (err.response?.data?.error) {
+                setError(err.response.data.error);
+            } else {
+                setError("Something went wrong. Please try again.");
+            }
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -38,7 +66,7 @@ export default function Login() {
             {/* Main Container */}
             <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 w-full max-w-[1440px] mx-auto">
 
-                {/* Left Column: Visual & Branding (Hidden on mobile dashboards) */}
+                {/* Left Column: Visual & Branding */}
                 <div className="relative hidden lg:flex flex-col justify-between p-12 overflow-hidden bg-zinc-950 text-white">
                     <div className="absolute inset-0 z-0 opacity-40">
                         <img
@@ -49,17 +77,13 @@ export default function Login() {
                         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
                     </div>
 
-                    {/* Logo / Branding top left */}
                     <div className="relative z-10 flex items-center gap-2">
                         <div className="rounded-lg bg-[#f0b100] flex justify-center items-center w-8 h-8 shadow-md">
                             <GraduationCap className="size-4 text-white" />
                         </div>
-                        <span className="font-bold text-white text-xl tracking-tight">
-                            GradHub
-                        </span>
+                        <span className="font-bold text-white text-xl tracking-tight">GradHub</span>
                     </div>
 
-                    {/* Testimonial / Value Prop bottom left */}
                     <div className="relative z-10 max-w-[460px] flex flex-col gap-4">
                         <blockquote className="text-xl font-medium leading-relaxed text-zinc-100">
                             &ldquo;GradHub completely changed how our company recruits technical talent. Finding verified graduation projects saved our engineering team dozens of interview hours.&rdquo;
@@ -71,7 +95,7 @@ export default function Login() {
                     </div>
                 </div>
 
-                {/* Right Column: Interactive Login Form */}
+                {/* Right Column: Login Form */}
                 <div className="flex items-center justify-center p-6 md:p-12 bg-zinc-50/50">
                     <Card className="w-full max-w-[440px] shadow-xl rounded-2xl bg-white border-zinc-200/80 p-2 md:p-4">
                         <CardHeader className="space-y-2 text-center">
@@ -89,8 +113,13 @@ export default function Login() {
                         </CardHeader>
 
                         <CardContent>
+                            {error && (
+                                <div className="mb-4 rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+                                    {error}
+                                </div>
+                            )}
+
                             <form onSubmit={handleSubmit} className="space-y-4">
-                                {/* Email Input */}
                                 <div className="space-y-2">
                                     <Label htmlFor="email" className="text-sm font-semibold text-zinc-800">
                                         Email Address
@@ -109,16 +138,12 @@ export default function Login() {
                                     </div>
                                 </div>
 
-                                {/* Password Input */}
                                 <div className="space-y-2">
                                     <div className="flex justify-between items-center">
                                         <Label htmlFor="password" className="text-sm font-semibold text-zinc-800">
                                             Password
                                         </Label>
-                                        <a
-                                            href="#"
-                                            className="text-xs font-medium text-[#f0b100] hover:underline"
-                                        >
+                                        <a href="#" className="text-xs font-medium text-[#f0b100] hover:underline">
                                             Forgot password?
                                         </a>
                                     </div>
@@ -136,35 +161,31 @@ export default function Login() {
                                     </div>
                                 </div>
 
-                                {/* Submit button */}
                                 <Button
                                     type="submit"
-                                    className="w-full shadow-md font-semibold rounded-xl bg-[#f0b100] text-white h-11 transition-all hover:bg-[#d69e00] cursor-pointer mt-2"
+                                    disabled={loading}
+                                    className="w-full shadow-md font-semibold rounded-xl bg-[#f0b100] text-white h-11 transition-all hover:bg-[#d69e00] cursor-pointer mt-2 disabled:opacity-60"
                                 >
-                                    Sign In
-                                    <ArrowRight className="size-4 ml-2" />
+                                    {loading ? "Signing in…" : "Sign In"}
+                                    {!loading && <ArrowRight className="size-4 ml-2" />}
                                 </Button>
                             </form>
 
-                            {/* SSO Divider */}
                             <div className="relative my-6">
                                 <div className="absolute inset-0 flex items-center">
                                     <Separator className="w-full border-zinc-200" />
                                 </div>
                                 <div className="relative flex justify-center text-xs uppercase">
-                                    <span className="bg-white px-3 text-zinc-400 font-medium">
-                                        Or continue with
-                                    </span>
+                                    <span className="bg-white px-3 text-zinc-400 font-medium">Or continue with</span>
                                 </div>
                             </div>
 
-                            {/* OAuth Providers */}
                             <div className="grid grid-cols-2 gap-4">
                                 <Button
                                     variant="outline"
                                     className="rounded-xl border-zinc-200 font-medium text-sm text-zinc-700 h-10 hover:bg-zinc-50"
-                                    onClick={() => console.log("Google Login")}
                                     type="button"
+                                    disabled
                                 >
                                     <Globe className="size-4 mr-2 text-zinc-600" />
                                     Google
@@ -172,8 +193,8 @@ export default function Login() {
                                 <Button
                                     variant="outline"
                                     className="rounded-xl border-zinc-200 font-medium text-sm text-zinc-700 h-10 hover:bg-zinc-50"
-                                    onClick={() => console.log("GitHub Login")}
                                     type="button"
+                                    disabled
                                 >
                                     <Github className="size-4 mr-2 text-zinc-950" />
                                     GitHub
@@ -184,14 +205,13 @@ export default function Login() {
                         <CardFooter className="justify-center pt-2 pb-4">
                             <p className="text-zinc-500 text-sm">
                                 Don&apos;t have an account?{" "}
-                                <a href="#" className="font-semibold text-[#f0b100] hover:underline">
+                                <Link to="/signup" className="font-semibold text-[#f0b100] hover:underline">
                                     Sign up free
-                                </a>
+                                </Link>
                             </p>
                         </CardFooter>
                     </Card>
                 </div>
-
             </div>
         </div>
     );

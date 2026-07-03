@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { GraduationCap, Home, Users, Briefcase, FolderOpen, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -13,6 +14,7 @@ const navItems = [
 export default function Navbar() {
     const [activeTab, setActiveTab] = useState("Home");
     const [hoveredTab, setHoveredTab] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     return (
         <nav className="sticky z-50 bg-white border-b border-zinc-200 top-0 w-full">
@@ -57,11 +59,13 @@ export default function Navbar() {
                 <div className="flex items-center gap-4">
                     <Button
                         variant="ghost"
+                        onClick={() => navigate("/login")}
                         className="font-medium text-sm cursor-pointer transition-all hover:bg-zinc-100 hover:text-[#f0b100]"
                     >
                         Sign In
                     </Button>
                     <Button
+                        onClick={() => navigate("/signup")}
                         className="font-medium rounded-lg bg-[#f0b100] text-white text-sm cursor-pointer transition-all hover:scale-105 hover:bg-[#d69e00]"
                     >
                         Get Started

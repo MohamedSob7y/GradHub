@@ -86,14 +86,14 @@
 
 ### Wave 3 — Auth BLL + Controller
 
-- [ ] 3.1 Define BLL exception types in `GRadHubBLL/Exceptions/GradHubExceptions.cs`
+- [x] 3.1 Define BLL exception types in `GRadHubBLL/Exceptions/GradHubExceptions.cs`
   - `NotFoundException(string message)`
   - `ConflictException(string message)`
   - `ForbiddenException(string message)`
   - `ValidationException(Dictionary<string, string[]> errors)`
 
-- [ ] 3.2 Implement `AuthService.RegisterAsync`
-  - Validate password length (8–128 chars)
+- [x] 3.2 Implement `AuthService.RegisterAsync`
+  - Validate password length (8–128 chars)\
   - Validate role is "Student" or "Recruiter"
   - Check email uniqueness → throw `ConflictException` if taken
   - Hash password: `BCrypt.Net.BCrypt.HashPassword(password, workFactor: 12)`
@@ -102,12 +102,12 @@
   - If Recruiter: create `CompanyProfile`
   - Call `SaveChangesAsync()`; return `AuthResultDto`
 
-- [ ] 3.3 Implement `AuthService.LoginAsync` + `GenerateToken`
+- [x] 3.3 Implement `AuthService.LoginAsync` + `GenerateToken`
   - Look up user by email; if not found or BCrypt.Verify fails → return 401 result
   - Build JWT with claims: `sub` (userId), `email`, `role`; sign HS256; expiry from config
   - Return `AuthResultDto { Token, ExpiresAt }`
 
-- [ ] 3.4 Implement `AuthController`
+- [x] 3.4 Implement `AuthController`
   - `POST /api/auth/register` → 201 Created or error
   - `POST /api/auth/login` → 200 OK with token or 401
 
@@ -115,20 +115,20 @@
 
 ### Wave 4 — Student BLL + Controller
 
-- [x] 4.1 Implement `StudentService.GetProfileAsync(int userId)`
+- [ ] 4.1 Implement `StudentService.GetProfileAsync(int userId)`
   - Load `CandidateProfile` by UserId including `CandidateSkills` → `Skill`
   - Map to `CandidateProfileDto`; throw `NotFoundException` if profile missing
 
-- [x] 4.2 Implement `StudentService.UpdateProfileAsync(int userId, UpdateProfileDto dto)`
+- [ ] 4.2 Implement `StudentService.UpdateProfileAsync(int userId, UpdateProfileDto dto)`
   - Validate: `Field` (1–100 chars), `Bio` (≤1000 chars), URL fields (valid URI format)
   - Update and persist; return updated DTO
 
-- [x] 4.3 Implement `StudentService.AddSkillAsync(int userId, int skillId)`
+- [ ] 4.3 Implement `StudentService.AddSkillAsync(int userId, int skillId)`
   - Check skill exists (404 if not)
   - Check not already linked (409 if so)
   - Create `CandidateSkill` record; persist
 
-- [x] 4.4 Implement `StudentService.RemoveSkillAsync(int userId, int skillId)`
+- [ ] 4.4 Implement `StudentService.RemoveSkillAsync(int userId, int skillId)`
   - Check link exists (404 if not); delete; persist
 
 - [ ] 4.5 Implement `StudentController`
@@ -142,14 +142,14 @@
 
 ### Wave 5 — Recruiter BLL + Controller
 
-- [x] 5.1 Implement `RecruiterService.GetProfileAsync(int userId)`
+- [ ] 5.1 Implement `RecruiterService.GetProfileAsync(int userId)`
   - Load `CompanyProfile` by UserId; throw `NotFoundException` if missing
 
-- [x] 5.2 Implement `RecruiterService.UpdateProfileAsync(int userId, UpdateCompanyDto dto)`
+- [ ] 5.2 Implement `RecruiterService.UpdateProfileAsync(int userId, UpdateCompanyDto dto)`
   - Validate `CompanyName` (1–150, required), `Industry` (required)
   - Update and persist; return updated DTO
 
-- [x] 5.3 Implement `RecruiterController`
+- [ ] 5.3 Implement `RecruiterController`
   - `GET /api/recruiters/me` — `[Authorize(Roles = "Recruiter")]`
   - `PUT /api/recruiters/me` — `[Authorize(Roles = "Recruiter")]`
 
