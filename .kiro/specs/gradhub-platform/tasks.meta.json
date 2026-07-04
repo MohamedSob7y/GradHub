@@ -1,0 +1,156 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "6.1 Implement `ProjectService.CreateAsync(int userId, CreateProjectDto dto)`": [
+      {
+        "executionId": "613f6c56-a074-4154-9db0-29f3e2a5ecf0",
+        "chatSessionId": "sess_5b43e563-a1d4-4bca-be21-41c169746f4c",
+        "timestamp": 1783183384079
+      },
+      {
+        "executionId": "613f6c56-a074-4154-9db0-29f3e2a5ecf0",
+        "chatSessionId": "sess_5b43e563-a1d4-4bca-be21-41c169746f4c",
+        "timestamp": 1783183825940
+      }
+    ],
+    "6.2 Implement `ProjectService.GetMyProjectsAsync(int userId)`": [
+      {
+        "executionId": "a2bf05d2-d47e-45e5-b54a-5b3a55a7dd7f",
+        "chatSessionId": "sess_151102bd-a1a3-4cec-95ff-734da069b8a2",
+        "timestamp": 1783183844951
+      },
+      {
+        "executionId": "a2bf05d2-d47e-45e5-b54a-5b3a55a7dd7f",
+        "chatSessionId": "sess_151102bd-a1a3-4cec-95ff-734da069b8a2",
+        "timestamp": 1783184010007
+      }
+    ],
+    "6.3 Implement `ProjectService.UpdateAsync(int userId, int projectId, UpdateProjectDto dto)`": [
+      {
+        "executionId": "2025eb3b-8f8c-4109-9243-66a5c1d387f6",
+        "chatSessionId": "sess_40947d96-13d2-4a2f-a843-982c8d33dddb",
+        "timestamp": 1783184055053
+      },
+      {
+        "executionId": "2025eb3b-8f8c-4109-9243-66a5c1d387f6",
+        "chatSessionId": "sess_40947d96-13d2-4a2f-a843-982c8d33dddb",
+        "timestamp": 1783184231367
+      }
+    ],
+    "6.4 Implement `ProjectService.DeleteAsync(int userId, int projectId)`": [
+      {
+        "executionId": "59985e12-2585-4324-87ef-0df2410aed1e",
+        "chatSessionId": "sess_6aef631c-30bd-4739-bb01-cb472a115ae4",
+        "timestamp": 1783184378359
+      },
+      {
+        "executionId": "59985e12-2585-4324-87ef-0df2410aed1e",
+        "chatSessionId": "sess_6aef631c-30bd-4739-bb01-cb472a115ae4",
+        "timestamp": 1783184468231
+      }
+    ],
+    "6.5 Implement `ProjectService.AddSkillAsync` and `RemoveSkillAsync`": [
+      {
+        "executionId": "1820298f-6b3b-4b97-bcca-405dcc49378f",
+        "chatSessionId": "sess_c01b70e9-8579-4fb6-9b07-53d5f45413f0",
+        "timestamp": 1783184798512
+      },
+      {
+        "executionId": "1820298f-6b3b-4b97-bcca-405dcc49378f",
+        "chatSessionId": "sess_c01b70e9-8579-4fb6-9b07-53d5f45413f0",
+        "timestamp": 1783184899292
+      }
+    ],
+    "6.6 Implement `ProjectService.BrowseAsync(BrowseProjectsQuery query)`": [
+      {
+        "executionId": "bffb5499-3614-45c8-8b9d-72264f47670c",
+        "chatSessionId": "sess_4d023b6c-a937-4dd2-965f-757f51d7af3f",
+        "timestamp": 1783186800102
+      },
+      {
+        "executionId": "bffb5499-3614-45c8-8b9d-72264f47670c",
+        "chatSessionId": "sess_4d023b6c-a937-4dd2-965f-757f51d7af3f",
+        "timestamp": 1783186951267
+      }
+    ],
+    "6.7 Implement `ProjectService.GetDetailForRecruiterAsync(int projectId)`": [
+      {
+        "executionId": "f522f791-57af-4598-96a0-c365222e47e3",
+        "chatSessionId": "sess_49d65988-0977-4d1b-b598-e0ab66e9352f",
+        "timestamp": 1783186979489
+      },
+      {
+        "executionId": "f522f791-57af-4598-96a0-c365222e47e3",
+        "chatSessionId": "sess_49d65988-0977-4d1b-b598-e0ab66e9352f",
+        "timestamp": 1783187061112
+      }
+    ],
+    "6.8 Implement `ProjectController`": [
+      {
+        "executionId": "5383fd19-c0d0-43c8-a364-bd8f314252ae",
+        "chatSessionId": "sess_7369dbad-dcda-473a-84b4-6350249f241d",
+        "timestamp": 1783187315326
+      },
+      {
+        "executionId": "5383fd19-c0d0-43c8-a364-bd8f314252ae",
+        "chatSessionId": "sess_7369dbad-dcda-473a-84b4-6350249f241d",
+        "timestamp": 1783187443456
+      }
+    ],
+    "8.1 Set up feature-folder structure and shared infrastructure": [
+      {
+        "executionId": "33b42dd2-7b0d-483f-8493-7c1978ced866",
+        "chatSessionId": "sess_21298de1-2614-4960-bff1-afe0cc3168ea",
+        "timestamp": 1783187739978
+      },
+      {
+        "executionId": "33b42dd2-7b0d-483f-8493-7c1978ced866",
+        "chatSessionId": "sess_21298de1-2614-4960-bff1-afe0cc3168ea",
+        "timestamp": 1783187885960
+      }
+    ],
+    "8.2 Configure routing in `App.tsx`": [
+      {
+        "executionId": "47cb292f-5dbe-4109-b450-cd455e4423f0",
+        "chatSessionId": "sess_2f925916-9113-454f-859c-9560f3e87dd1",
+        "timestamp": 1783187981754
+      },
+      {
+        "executionId": "47cb292f-5dbe-4109-b450-cd455e4423f0",
+        "chatSessionId": "sess_2f925916-9113-454f-859c-9560f3e87dd1",
+        "timestamp": 1783188359081
+      }
+    ],
+    "8.3 Implement auth feature": [
+      {
+        "executionId": "d4c530a8-3622-4b27-9cee-47b62ef7e6c3",
+        "chatSessionId": "sess_9078982f-5305-409e-97fa-4021d0efa667",
+        "timestamp": 1783188453656
+      },
+      {
+        "executionId": "d4c530a8-3622-4b27-9cee-47b62ef7e6c3",
+        "chatSessionId": "sess_9078982f-5305-409e-97fa-4021d0efa667",
+        "timestamp": 1783188844366
+      }
+    ],
+    "8.4 Implement student profile feature": [
+      {
+        "executionId": "723c27a0-0c47-4ffc-927e-c59e7556012d",
+        "chatSessionId": "sess_d7397f19-3d00-423b-9b8d-4bab9135bf98",
+        "timestamp": 1783188889950
+      },
+      {
+        "executionId": "723c27a0-0c47-4ffc-927e-c59e7556012d",
+        "chatSessionId": "sess_d7397f19-3d00-423b-9b8d-4bab9135bf98",
+        "timestamp": 1783189284952
+      }
+    ],
+    "8.5 Implement projects feature (student side)": [
+      {
+        "executionId": "b7bd4a72-74a4-4a06-999f-f98070659703",
+        "chatSessionId": "sess_5071fed4-9264-4337-8e7b-490523f6b745",
+        "timestamp": 1783189317794
+      }
+    ]
+  }
+}

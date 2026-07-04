@@ -1,12 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App.jsx";     // Your landing page component
-// @ts-ignore: No declaration file for login.jsx
-import Login from "./pages/login.jsx"; // Your new Login page
-// @ts-ignore: No declaration file for signup.jsx
-import SignUp from "./pages/signup.jsx"; // Your new SignUp page
-import "./index.css";            // Tailwind styles
+import App from "./App.jsx";
+import LoginPage from "./auth/LoginPage";
+import RegisterPage from "./auth/RegisterPage";
+import ProtectedRoute from "./shared/components/ProtectedRoute";
+import ProfilePage from "./student/ProfilePage";
+import EditProfilePage from "./student/EditProfilePage";
+import MyProjectsPage from "./projects/MyProjectsPage";
+import ProjectFormPage from "./projects/ProjectFormPage";
+import BrowsePage from "./recruiter/BrowsePage";
+import ProjectDetailPage from "./recruiter/ProjectDetailPage";
+import RecruiterProfilePage from "./recruiter/RecruiterProfilePage";
+import "./index.css";
 
 const rootElement = document.getElementById("root");
 
@@ -18,10 +24,27 @@ ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
+        {/* Public routes */}
         <Route path="/" element={<App />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/signup" element={<RegisterPage />} />
 
+        {/* Student-only routes */}
+        <Route element={<ProtectedRoute allowedRole="Student" />}>
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/edit" element={<EditProfilePage />} />
+          <Route path="/projects/me" element={<MyProjectsPage />} />
+          <Route path="/projects/me/new" element={<ProjectFormPage />} />
+          <Route path="/projects/:id/edit" element={<ProjectFormPage />} />
+        </Route>
+
+        {/* Recruiter-only routes */}
+        <Route element={<ProtectedRoute allowedRole="Recruiter" />}>
+          <Route path="/browse" element={<BrowsePage />} />
+          <Route path="/browse/:id" element={<ProjectDetailPage />} />
+          <Route path="/recruiter/profile" element={<RecruiterProfilePage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

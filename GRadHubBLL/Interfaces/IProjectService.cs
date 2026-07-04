@@ -8,6 +8,7 @@ namespace GRadHubBLL.Interfaces
         Task<ProjectDto> CreateAsync(int userId, CreateProjectDto dto);
         Task<ProjectDto> UpdateAsync(int userId, int projectId, UpdateProjectDto dto);
         Task DeleteAsync(int userId, int projectId);
+        Task<IEnumerable<ProjectDto>> GetMyProjectsAsync(int userId);
         Task<ProjectDto> GetByIdAsync(int userId, int projectId);
         Task AddSkillAsync(int userId, int projectId, int skillId);
         Task RemoveSkillAsync(int userId, int projectId, int skillId);

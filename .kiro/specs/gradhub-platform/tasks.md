@@ -157,35 +157,35 @@
 
 ### Wave 6 — Projects BLL + Controller
 
-- [ ] 6.1 Implement `ProjectService.CreateAsync(int userId, CreateProjectDto dto)`
+- [x] 6.1 Implement `ProjectService.CreateAsync(int userId, CreateProjectDto dto)`
   - Validate Title (1–200), Description (1–2000), Category (required)
   - Create `GraduationProject` (Status="Draft") and any `ProjectSkill` records
   - Persist; return `ProjectDto`
 
-- [ ] 6.2 Implement `ProjectService.GetMyProjectsAsync(int userId)`
+- [x] 6.2 Implement `ProjectService.GetMyProjectsAsync(int userId)`
   - Return all projects for the student's `CandidateProfile` including skills
 
-- [ ] 6.3 Implement `ProjectService.UpdateAsync(int userId, int projectId, UpdateProjectDto dto)`
+- [x] 6.3 Implement `ProjectService.UpdateAsync(int userId, int projectId, UpdateProjectDto dto)`
   - Verify project belongs to calling student (404 if not)
   - Validate fields; update; set `UpdatedAt = DateTime.UtcNow`; persist
 
-- [ ] 6.4 Implement `ProjectService.DeleteAsync(int userId, int projectId)`
+- [x] 6.4 Implement `ProjectService.DeleteAsync(int userId, int projectId)`
   - Verify ownership (404 if not); delete (EF cascade removes `ProjectSkill` records)
 
-- [ ] 6.5 Implement `ProjectService.AddSkillAsync` and `RemoveSkillAsync`
+- [x] 6.5 Implement `ProjectService.AddSkillAsync` and `RemoveSkillAsync`
   - Both: verify project ownership (404)
   - Add: check skill exists (404), check not already linked (409); create `ProjectSkill`
   - Remove: check link exists (404); delete
 
-- [ ] 6.6 Implement `ProjectService.BrowseAsync(BrowseProjectsQuery query)`
+- [x] 6.6 Implement `ProjectService.BrowseAsync(BrowseProjectsQuery query)`
   - Filter: `Status = "Published"` always; category if provided; all skill IDs must match; search term on Title + Description (case-insensitive)
   - Paginate: page ≥1, pageSize 1–50; return `PagedResult<ProjectSummaryDto>`
 
-- [ ] 6.7 Implement `ProjectService.GetDetailForRecruiterAsync(int projectId)`
+- [x] 6.7 Implement `ProjectService.GetDetailForRecruiterAsync(int projectId)`
   - Return full project detail including student contact info (ContactEmail, WhatsAppNumber, LinkedInLink)
   - Return 404 if project not found or not published
 
-- [ ] 6.8 Implement `ProjectController`
+- [x] 6.8 Implement `ProjectController`
   - `GET /api/projects` — `[Authorize(Roles = "Recruiter")]` — bind query params to `BrowseProjectsQuery`
   - `GET /api/projects/{id}` — `[Authorize(Roles = "Recruiter")]`
   - `POST /api/projects` — `[Authorize(Roles = "Student")]`
@@ -209,34 +209,34 @@
 
 ### Wave 8 — React Frontend
 
-- [ ] 8.1 Set up feature-folder structure and shared infrastructure
+- [x] 8.1 Set up feature-folder structure and shared infrastructure
   - Create folders: `auth/`, `student/`, `projects/`, `recruiter/`, `shared/`
   - `shared/api/axiosInstance.ts`: axios instance with base URL from env, JWT Bearer interceptor (reads from `localStorage`)
   - `shared/types.ts`: TypeScript types matching API DTOs
   - Install `react-router-dom` if not present
 
-- [ ] 8.2 Configure routing in `App.tsx`
+- [x] 8.2 Configure routing in `App.tsx`
   - Public routes: `/login`, `/register`
   - Student routes: `/profile`, `/projects/me`, `/projects/me/new`, `/projects/:id/edit`
   - Recruiter routes: `/browse`, `/browse/:id`, `/recruiter/profile`
   - Implement `ProtectedRoute` component: reads JWT from localStorage, decodes role, redirects if unauthenticated or wrong role
 
-- [ ] 8.3 Implement auth feature
+- [x] 8.3 Implement auth feature
   - `auth/authApi.ts`: `login(dto)` → stores JWT in localStorage; `register(dto)`; `logout()` → clears localStorage
   - `auth/LoginPage.tsx`: email + password form; on success redirect based on role
   - `auth/RegisterPage.tsx`: fullName, email, password, role select; on success redirect to `/login`
 
-- [ ] 8.4 Implement student profile feature
+- [x] 8.4 Implement student profile feature
   - `student/studentApi.ts`: `getProfile()`, `updateProfile(dto)`, `addSkill(skillId)`, `removeSkill(skillId)`
   - `student/ProfilePage.tsx`: display all profile fields + skills list with remove buttons + skill-add dropdown (populated from `GET /api/skills`)
   - `student/EditProfilePage.tsx`: form bound to `UpdateProfileDto`; client-side validation
 
-- [ ] 8.5 Implement projects feature (student side)
+- [-] 8.5 Implement projects feature (student side)
   - `projects/projectApi.ts`: `createProject(dto)`, `getMyProjects()`, `updateProject(id, dto)`, `deleteProject(id)`, `addSkill(projectId, skillId)`, `removeSkill(projectId, skillId)`, `browseProjects(query)`, `getProjectDetail(id)`
   - `projects/MyProjectsPage.tsx`: list of own projects with edit/delete actions and publish toggle
   - `projects/ProjectFormPage.tsx`: create/edit form with skill multi-select
 
-- [ ] 8.6 Implement recruiter browse feature
+- [~] 8.6 Implement recruiter browse feature
   - `recruiter/BrowsePage.tsx`: paginated project cards with category filter, skill multi-filter, search input (debounced)
   - `recruiter/ProjectDetailPage.tsx`: full project detail with student contact info displayed
   - `recruiter/RecruiterProfilePage.tsx`: display and edit form for `CompanyProfile`
