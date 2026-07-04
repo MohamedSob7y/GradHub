@@ -1,0 +1,11 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  GradHubDAL -> C:\Users\TheWi\Documents\GitHub\GradHub\GradHubDAL\bin\Debug\net9.0\GradHubDAL.dll
+  GRadHubBLL -> c:\Users\TheWi\Documents\GitHub\GradHub\GRadHubBLL\bin\Debug\net9.0\GRadHubBLL.dll
+  GradHubPL -> c:\Users\TheWi\Documents\GitHub\GradHub\GradHubPL\bin\Debug\net9.0\GradHubPL.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.40

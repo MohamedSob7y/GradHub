@@ -46,6 +46,7 @@ export interface CandidateProfileDto {
     linkedInLink: string | null;
     whatsAppNumber: string | null;
     contactEmail: string | null;
+    createdAt: string;
     skills: SkillDto[];
 }
 
@@ -133,6 +134,7 @@ export interface ProjectDetailDto extends ProjectSummaryDto {
     description: string;
     gitHubLink: string | null;
     liveDemoLink: string | null;
+    createdAt: string;
     contactEmail: string | null;
     whatsAppNumber: string | null;
     linkedInLink: string | null;

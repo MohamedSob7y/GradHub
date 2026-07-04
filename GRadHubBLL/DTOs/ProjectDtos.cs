@@ -14,7 +14,8 @@ namespace GRadHubBLL.DTOs
         string? Category,
         string? Status,
         string? GitHubLink,
-        string? LiveDemoLink);
+        string? LiveDemoLink,
+        IEnumerable<int>? SkillIds = null);
 
     public record ProjectDto(
         int Id,
