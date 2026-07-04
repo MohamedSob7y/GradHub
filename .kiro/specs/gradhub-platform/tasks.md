@@ -142,14 +142,14 @@
 
 ### Wave 5 — Recruiter BLL + Controller
 
-- [ ] 5.1 Implement `RecruiterService.GetProfileAsync(int userId)`
+- [x] 5.1 Implement `RecruiterService.GetProfileAsync(int userId)`
   - Load `CompanyProfile` by UserId; throw `NotFoundException` if missing
 
-- [ ] 5.2 Implement `RecruiterService.UpdateProfileAsync(int userId, UpdateCompanyDto dto)`
+- [x] 5.2 Implement `RecruiterService.UpdateProfileAsync(int userId, UpdateCompanyDto dto)`
   - Validate `CompanyName` (1–150, required), `Industry` (required)
   - Update and persist; return updated DTO
 
-- [ ] 5.3 Implement `RecruiterController`
+- [x] 5.3 Implement `RecruiterController`
   - `GET /api/recruiters/me` — `[Authorize(Roles = "Recruiter")]`
   - `PUT /api/recruiters/me` — `[Authorize(Roles = "Recruiter")]`
 
@@ -231,12 +231,12 @@
   - `student/ProfilePage.tsx`: display all profile fields + skills list with remove buttons + skill-add dropdown (populated from `GET /api/skills`)
   - `student/EditProfilePage.tsx`: form bound to `UpdateProfileDto`; client-side validation
 
-- [-] 8.5 Implement projects feature (student side)
+- [x] 8.5 Implement projects feature (student side)
   - `projects/projectApi.ts`: `createProject(dto)`, `getMyProjects()`, `updateProject(id, dto)`, `deleteProject(id)`, `addSkill(projectId, skillId)`, `removeSkill(projectId, skillId)`, `browseProjects(query)`, `getProjectDetail(id)`
   - `projects/MyProjectsPage.tsx`: list of own projects with edit/delete actions and publish toggle
   - `projects/ProjectFormPage.tsx`: create/edit form with skill multi-select
 
-- [~] 8.6 Implement recruiter browse feature
+- [x] 8.6 Implement recruiter browse feature
   - `recruiter/BrowsePage.tsx`: paginated project cards with category filter, skill multi-filter, search input (debounced)
   - `recruiter/ProjectDetailPage.tsx`: full project detail with student contact info displayed
   - `recruiter/RecruiterProfilePage.tsx`: display and edit form for `CompanyProfile`
