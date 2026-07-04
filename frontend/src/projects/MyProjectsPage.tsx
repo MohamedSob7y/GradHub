@@ -51,8 +51,8 @@ export default function MyProjectsPage() {
         try {
             const newStatus = project.status === "Published" ? "Draft" : "Published";
             const updated = await updateProject(project.id, { status: newStatus });
-            setProjects((prev) =>
-                prev.map((p) => (p.id === updated.id ? updated : p))
+            setProjects((prev: ProjectDto[]) =>
+                prev.map((p: ProjectDto) => (p.id === updated.id ? updated : p))
             );
         } catch {
             setError("Failed to update project status. Please try again.");
@@ -66,7 +66,7 @@ export default function MyProjectsPage() {
         setDeletingId(project.id);
         try {
             await deleteProject(project.id);
-            setProjects((prev) => prev.filter((p) => p.id !== project.id));
+            setProjects((prev: ProjectDto[]) => prev.filter((p: ProjectDto) => p.id !== project.id));
         } catch {
             setError("Failed to delete project. Please try again.");
         } finally {
@@ -149,7 +149,7 @@ export default function MyProjectsPage() {
                     </Card>
                 ) : (
                     <div className="flex flex-col gap-4">
-                        {projects.map((project) => (
+                        {projects.map((project: ProjectDto) => (
                             <ProjectCard
                                 key={project.id}
                                 project={project}
@@ -197,11 +197,10 @@ function ProjectCard({
                         <span className="text-xs text-zinc-400 font-medium">{project.category}</span>
                     </div>
                     <Badge
-                        className={`flex-shrink-0 rounded-lg font-medium text-xs px-2 py-0.5 ${
-                            isPublished
-                                ? "bg-green-100 text-green-700 border-green-200"
-                                : "bg-zinc-100 text-zinc-500 border-zinc-200"
-                        }`}
+                        className={`flex-shrink-0 rounded-lg font-medium text-xs px-2 py-0.5 ${isPublished
+                            ? "bg-green-100 text-green-700 border-green-200"
+                            : "bg-zinc-100 text-zinc-500 border-zinc-200"
+                            }`}
                     >
                         {isPublished ? "Published" : "Draft"}
                     </Badge>
