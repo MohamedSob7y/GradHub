@@ -449,7 +449,8 @@ namespace GRadHubBLL.Services
                 p.CandidateProfile.User.FullName,
                 p.CandidateProfile.Field));
 
-            return new PagedResult<ProjectSummaryDto>(items, totalCount, page, size);
+            var totalPages = (int)Math.Ceiling((double)totalCount / size);
+            return new PagedResult<ProjectSummaryDto>(items, totalCount, page, size, totalPages);
         }
 
         public async Task<ProjectDetailDto> GetDetailForRecruiterAsync(int projectId)

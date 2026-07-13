@@ -64,5 +64,5 @@ namespace GRadHubBLL.DTOs
         IEnumerable<int>? SkillIds = null,
         string? Search = null);
 
-    public record PagedResult<T>(IEnumerable<T> Items, int TotalCount, int Page, int PageSize);
+    public record PagedResult<T>(IEnumerable<T> Items, int TotalCount, int Page, int PageSize, int TotalPages);
 }
