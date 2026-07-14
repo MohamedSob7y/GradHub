@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App.jsx";
-import LoginPage from "./auth/LoginPage";
-import RegisterPage from "./auth/RegisterPage";
+import App from "./App";
+import Login from "./auth/login.jsx";
+import SignUp from "./auth/signup.jsx";
 import ProtectedRoute from "./shared/components/ProtectedRoute";
 import ProfilePage from "./student/ProfilePage";
 import EditProfilePage from "./student/EditProfilePage";
@@ -26,9 +26,9 @@ ReactDOM.createRoot(rootElement).render(
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<App />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/signup" element={<RegisterPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<SignUp />} />
+        <Route path="/signup" element={<SignUp />} />
 
         {/* Student-only routes */}
         <Route element={<ProtectedRoute allowedRole="Student" />}>
