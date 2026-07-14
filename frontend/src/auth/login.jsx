@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from "@/components/ui/navbar";
+
 import {
     GraduationCap,
     Lock,
@@ -22,22 +23,20 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { login } from "./authApi";
-import type { LoginDto } from "../shared/types";
 
-export default function LoginPage() {
+export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
         setLoading(true);
         try {
-            const dto: LoginDto = { email, password };
-            const result = await login(dto);
+            const result = await login({ email, password });
 
             // Decode role from the stored token to decide where to redirect
             const payload = JSON.parse(
@@ -48,12 +47,11 @@ export default function LoginPage() {
             } else {
                 navigate("/browse");
             }
-        } catch (err: unknown) {
-            const axiosErr = err as { response?: { status?: number; data?: { error?: string } } };
-            if (axiosErr.response?.status === 401) {
+        } catch (err) {
+            if (err.response?.status === 401) {
                 setError("Invalid email or password.");
-            } else if (axiosErr.response?.data?.error) {
-                setError(axiosErr.response.data.error);
+            } else if (err.response?.data?.error) {
+                setError(err.response.data.error);
             } else {
                 setError("Something went wrong. Please try again.");
             }
@@ -74,7 +72,7 @@ export default function LoginPage() {
                     <div className="absolute inset-0 z-0 opacity-40">
                         <img
                             alt="Students working on laptops"
-                            className="object-cover w-full h-full"
+                            className="object-cover w-full h-full "
                             src="https://images.unsplash.com/photo-1758270705172-07b53627dfcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />

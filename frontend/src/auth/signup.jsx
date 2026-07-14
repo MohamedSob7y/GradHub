@@ -24,42 +24,25 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { register } from "./authApi";
-import type { RegisterDto } from "../shared/types";
 
-type RoleOption = "student" | "recruiter";
-
-interface FieldErrors {
-    email?: string;
-    password?: string;
-    name?: string;
-    [key: string]: string | undefined;
-}
-
-interface FormData {
-    name: string;
-    email: string;
-    password: string;
-    companyOrUniversity: string;
-}
-
-export default function RegisterPage() {
-    const [role, setRole] = useState<RoleOption>("student");
-    const [formData, setFormData] = useState<FormData>({
+export default function SignUp() {
+    const [role, setRole] = useState("student"); // 'student' | 'recruiter'
+    const [formData, setFormData] = useState({
         name: "",
         email: "",
         password: "",
         companyOrUniversity: "",
     });
     const [error, setError] = useState("");
-    const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+    const [fieldErrors, setFieldErrors] = useState({});
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value });
     };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
         setFieldErrors({});
@@ -73,37 +56,31 @@ export default function RegisterPage() {
         }
 
         try {
-            const dto: RegisterDto = {
+            await register({
                 fullName: formData.name,
                 email: formData.email,
                 password: formData.password,
                 role: role === "student" ? "Student" : "Recruiter",
-            };
-            await register(dto);
+            });
 
-            // On success redirect to /login as per spec
-            navigate("/login");
-        } catch (err: unknown) {
-            const axiosErr = err as {
-                response?: {
-                    status?: number;
-                    data?: {
-                        errors?: Record<string, string[]>;
-                        error?: string;
-                    };
-                };
-            };
-            if (axiosErr.response?.status === 409) {
+            // Registration also returns a JWT — redirect based on role
+            if (role === "student") {
+                navigate("/profile");
+            } else {
+                navigate("/browse");
+            }
+        } catch (err) {
+            if (err.response?.status === 409) {
                 setError("This email is already registered. Try logging in.");
-            } else if (axiosErr.response?.data?.errors) {
+            } else if (err.response?.data?.errors) {
                 // ValidationException field errors from the BLL
-                const serverErrors: FieldErrors = {};
-                for (const [field, msgs] of Object.entries(axiosErr.response.data.errors)) {
+                const serverErrors = {};
+                for (const [field, msgs] of Object.entries(err.response.data.errors)) {
                     serverErrors[field.toLowerCase()] = msgs[0];
                 }
                 setFieldErrors(serverErrors);
-            } else if (axiosErr.response?.data?.error) {
-                setError(axiosErr.response.data.error);
+            } else if (err.response?.data?.error) {
+                setError(err.response.data.error);
             } else {
                 setError("Something went wrong. Please try again.");
             }
