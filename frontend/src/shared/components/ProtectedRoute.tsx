@@ -1,22 +1,14 @@
 import { Navigate, Outlet } from "react-router-dom";
-import type { JwtPayload } from "../types";
+import { getTokenPayload } from "../../auth/authApi";
 
 interface ProtectedRouteProps {
   allowedRole: "Student" | "Recruiter";
 }
 
 export default function ProtectedRoute({ allowedRole }: ProtectedRouteProps) {
-  const token = localStorage.getItem("token");
+  const payload = getTokenPayload();
 
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
-
-  let payload: JwtPayload;
-  try {
-    const base64Payload = token.split(".")[1];
-    payload = JSON.parse(atob(base64Payload)) as JwtPayload;
-  } catch {
+  if (!payload) {
     return <Navigate to="/login" replace />;
   }
 

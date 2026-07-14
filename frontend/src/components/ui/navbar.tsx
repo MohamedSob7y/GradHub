@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { GraduationCap, Home, Users, Briefcase, FolderOpen, Info, UserCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getCurrentRole, isAuthenticated } from "@/auth/authApi";
@@ -13,11 +13,11 @@ const navItems = [
 ];
 
 export default function Navbar() {
-    const [activeTab, setActiveTab] = useState("Home");
     const [hoveredTab, setHoveredTab] = useState<string | null>(null);
     const [authenticated, setAuthenticated] = useState(false);
     const [role, setRole] = useState<"Student" | "Recruiter" | null>(null);
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const syncAuthState = () => {
@@ -34,6 +34,28 @@ export default function Navbar() {
             window.removeEventListener("storage", syncAuthState);
         };
     }, []);
+
+    const activeTab = useMemo(() => {
+        const pathname = location.pathname;
+
+        if (pathname.startsWith("/student") || pathname === "/student-landing") {
+            return "For Students";
+        }
+
+        if (pathname.startsWith("/browse") || pathname.startsWith("/recruiter")) {
+            return "For Recruiters";
+        }
+
+        if (pathname.startsWith("/projects")) {
+            return "Projects";
+        }
+
+        if (pathname === "/") {
+            return "Home";
+        }
+
+        return "Home";
+    }, [location.pathname]);
 
     const handleProfileClick = () => {
         if (role === "Student") {
@@ -65,7 +87,6 @@ export default function Navbar() {
                             <button
                                 key={item.name}
                                 onClick={() => {
-                                    setActiveTab(item.name);
                                     switch (item.name) {
                                         case "Home":
                                             navigate("/");

@@ -8,7 +8,16 @@ import type { RegisterDto, LoginDto, AuthResultDto, JwtPayload } from "../shared
 function decodeJwt(token: string): JwtPayload {
     const base64Payload = token.split(".")[1];
     const json = atob(base64Payload.replace(/-/g, "+").replace(/_/g, "/"));
-    return JSON.parse(json) as JwtPayload;
+    const payload = JSON.parse(json) as JwtPayload & Record<string, unknown>;
+    const role =
+        (payload.role as "Student" | "Recruiter" | undefined) ??
+        (payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] as "Student" | "Recruiter" | undefined) ??
+        (payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/role"] as "Student" | "Recruiter" | undefined);
+
+    return {
+        ...payload,
+        role: role ?? "Student",
+    } as JwtPayload;
 }
 
 function emitAuthChanged(): void {

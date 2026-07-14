@@ -33,14 +33,15 @@ ReactDOM.createRoot(rootElement).render(
 
         {/* Student-only routes */}
         <Route element={<ProtectedRoute allowedRole="Student" />}>
-        <Route path="/students" element={<StudentLandingPage />} />
+          <Route path="/student-landing" element={<StudentLandingPage />} />
+          <Route path="/students" element={<StudentLandingPage />} />
 
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/profile/edit" element={<EditProfilePage />} />
           <Route path="/projects/me" element={<MyProjectsPage />} />
           <Route path="/projects/me/new" element={<ProjectFormPage />} />
           <Route path="/projects/:id/edit" element={<ProjectFormPage />} />
-          
+
         </Route>
 
         {/* Recruiter-only routes */}

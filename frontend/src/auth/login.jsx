@@ -22,7 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { login } from "./authApi";
+import { login, getTokenPayload } from "./authApi";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -37,7 +37,13 @@ export default function Login() {
         setLoading(true);
         try {
             await login({ email, password });
-            navigate("/", { replace: true });
+            const payload = getTokenPayload();
+
+            if (payload?.role === "Student") {
+                navigate("/student-landing", { replace: true });
+            } else {
+                navigate("/", { replace: true });
+            }
         } catch (err) {
             if (err.response?.status === 401) {
                 setError("Invalid email or password.");
