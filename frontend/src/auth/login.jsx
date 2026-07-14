@@ -36,17 +36,8 @@ export default function Login() {
         setError("");
         setLoading(true);
         try {
-            const result = await login({ email, password });
-
-            // Decode role from the stored token to decide where to redirect
-            const payload = JSON.parse(
-                atob(result.token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))
-            );
-            if (payload.role === "Student") {
-                navigate("/profile");
-            } else {
-                navigate("/browse");
-            }
+            await login({ email, password });
+            navigate("/", { replace: true });
         } catch (err) {
             if (err.response?.status === 401) {
                 setError("Invalid email or password.");

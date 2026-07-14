@@ -1,22 +1,17 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/ui/navbar";
 import { Counter } from "@/components/counter";
-import { FeatureCard } from "@/components/ui/featureCard"; // Ensure this path is correct
+import { FeatureCard } from "@/components/ui/featureCard";
 import {
   ArrowRight,
   Brain,
-  Briefcase,
   Building,
-  Building2,
   CheckCircle,
   Code,
   FolderOpen,
   Github,
   GraduationCap,
   Heart,
-  Home,
-  Info,
   Linkedin,
   MessageCircle,
   Play,
@@ -25,21 +20,12 @@ import {
   Search,
   Sparkles,
   Star,
-  TrendingUp,
   Twitter,
   UserPlus,
-  Users,
 } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 

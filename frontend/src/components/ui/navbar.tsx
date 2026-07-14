@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GraduationCap, Home, Users, Briefcase, FolderOpen, Info } from "lucide-react";
+import { GraduationCap, Home, Users, Briefcase, FolderOpen, Info, UserCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getCurrentRole, isAuthenticated } from "@/auth/authApi";
 
 const navItems = [
     { name: "Home", icon: Home },
@@ -14,7 +15,33 @@ const navItems = [
 export default function Navbar() {
     const [activeTab, setActiveTab] = useState("Home");
     const [hoveredTab, setHoveredTab] = useState<string | null>(null);
+    const [authenticated, setAuthenticated] = useState(false);
+    const [role, setRole] = useState<"Student" | "Recruiter" | null>(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const syncAuthState = () => {
+            setAuthenticated(isAuthenticated());
+            setRole(getCurrentRole());
+        };
+
+        syncAuthState();
+        window.addEventListener("auth:changed", syncAuthState);
+        window.addEventListener("storage", syncAuthState);
+
+        return () => {
+            window.removeEventListener("auth:changed", syncAuthState);
+            window.removeEventListener("storage", syncAuthState);
+        };
+    }, []);
+
+    const handleProfileClick = () => {
+        if (role === "Student") {
+            navigate("/profile");
+        } else if (role === "Recruiter") {
+            navigate("/recruiter/profile");
+        }
+    };
 
     return (
         <nav className="sticky z-50 bg-white border-b border-zinc-200 top-0 w-full">
@@ -57,19 +84,34 @@ export default function Navbar() {
 
                 {/* Actions */}
                 <div className="flex items-center gap-4">
-                    <Button
-                        variant="ghost"
-                        onClick={() => navigate("/login")}
-                        className="font-medium text-sm cursor-pointer transition-all hover:bg-zinc-100 hover:text-[#f0b100]"
-                    >
-                        Sign In
-                    </Button>
-                    <Button
-                        onClick={() => navigate("/signup")}
-                        className="font-medium rounded-lg bg-[#f0b100] text-white text-sm cursor-pointer transition-all hover:scale-105 hover:bg-[#d69e00]"
-                    >
-                        Get Started
-                    </Button>
+                    {authenticated && role ? (
+                        <button
+                            type="button"
+                            onClick={handleProfileClick}
+                            className="flex items-center gap-2 rounded-full border border-zinc-200 bg-zinc-50 px-3 py-2 transition-all hover:border-[#f0b100]/40 hover:bg-zinc-100"
+                        >
+                            <div className="rounded-full bg-[#f0b100]/10 p-1.5">
+                                <UserCircle2 className="size-4 text-[#f0b100]" />
+                            </div>
+                            <span className="text-sm font-semibold text-zinc-900">{role}</span>
+                        </button>
+                    ) : (
+                        <>
+                            <Button
+                                variant="ghost"
+                                onClick={() => navigate("/login")}
+                                className="font-medium text-sm cursor-pointer transition-all hover:bg-zinc-100 hover:text-[#f0b100]"
+                            >
+                                Sign In
+                            </Button>
+                            <Button
+                                onClick={() => navigate("/signup")}
+                                className="font-medium rounded-lg bg-[#f0b100] text-white text-sm cursor-pointer transition-all hover:scale-105 hover:bg-[#d69e00]"
+                            >
+                                Get Started
+                            </Button>
+                        </>
+                    )}
                 </div>
             </div>
         </nav>

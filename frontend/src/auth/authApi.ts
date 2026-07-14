@@ -11,11 +11,18 @@ function decodeJwt(token: string): JwtPayload {
     return JSON.parse(json) as JwtPayload;
 }
 
+function emitAuthChanged(): void {
+    if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("auth:changed"));
+    }
+}
+
 /** Register a new user. Stores the returned JWT in localStorage. */
 export async function register(dto: RegisterDto): Promise<AuthResultDto> {
     const { data } = await axiosInstance.post<AuthResultDto>("/api/auth/register", dto);
     localStorage.setItem("token", data.token);
     localStorage.setItem("expiresAt", data.expiresAt);
+    emitAuthChanged();
     return data;
 }
 
@@ -24,6 +31,7 @@ export async function login(dto: LoginDto): Promise<AuthResultDto> {
     const { data } = await axiosInstance.post<AuthResultDto>("/api/auth/login", dto);
     localStorage.setItem("token", data.token);
     localStorage.setItem("expiresAt", data.expiresAt);
+    emitAuthChanged();
     return data;
 }
 
@@ -31,6 +39,7 @@ export async function login(dto: LoginDto): Promise<AuthResultDto> {
 export function logout(): void {
     localStorage.removeItem("token");
     localStorage.removeItem("expiresAt");
+    emitAuthChanged();
 }
 
 /** Returns the decoded JWT payload, or null if no token is stored. */

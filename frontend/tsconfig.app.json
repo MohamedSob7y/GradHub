@@ -13,6 +13,7 @@
       "vite/client"
     ],
     "skipLibCheck": true,
+    "allowJs": true,
     "ignoreDeprecations": "5.0",
     /* Path Aliases */
     "baseUrl": ".",

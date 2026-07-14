@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { createProject, updateProject, addSkill, removeSkill, getMyProjects } from "./projectApi";
 import { getAllSkills } from "../student/studentApi";
-import type { CreateProjectDto, UpdateProjectDto, SkillDto, ProjectDto } from "../shared/types";
+import type { CreateProjectDto, UpdateProjectDto, SkillDto } from "../shared/types";
 
 interface FormState {
     title: string;
