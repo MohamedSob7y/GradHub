@@ -7,6 +7,7 @@ import SignUp from "./auth/signup";
 import ProtectedRoute from "./shared/components/ProtectedRoute";
 import ProfilePage from "./student/ProfilePage";
 import EditProfilePage from "./student/EditProfilePage";
+import StudentLandingPage from "./student/StudentLandingPage";
 import MyProjectsPage from "./projects/MyProjectsPage";
 import ProjectFormPage from "./projects/ProjectFormPage";
 import BrowsePage from "./recruiter/BrowsePage";
@@ -32,11 +33,14 @@ ReactDOM.createRoot(rootElement).render(
 
         {/* Student-only routes */}
         <Route element={<ProtectedRoute allowedRole="Student" />}>
+        <Route path="/students" element={<StudentLandingPage />} />
+
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/profile/edit" element={<EditProfilePage />} />
           <Route path="/projects/me" element={<MyProjectsPage />} />
           <Route path="/projects/me/new" element={<ProjectFormPage />} />
           <Route path="/projects/:id/edit" element={<ProjectFormPage />} />
+          
         </Route>
 
         {/* Recruiter-only routes */}
