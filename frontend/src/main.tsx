@@ -10,6 +10,7 @@ import EditProfilePage from "./student/EditProfilePage";
 import StudentLandingPage from "./student/StudentLandingPage";
 import MyProjectsPage from "./projects/MyProjectsPage";
 import ProjectFormPage from "./projects/ProjectFormPage";
+import RecruiterLandingPage from "./recruiter/RecruiterLandingPage";
 import BrowsePage from "./recruiter/BrowsePage";
 import ProjectDetailPage from "./recruiter/ProjectDetailPage";
 import RecruiterProfilePage from "./recruiter/RecruiterProfilePage";
@@ -32,19 +33,22 @@ ReactDOM.createRoot(rootElement).render(
         <Route path="/signup" element={<RegisterPage />} />
 
         {/* Student-only routes */}
-        <Route element={<ProtectedRoute allowedRole="Student" />}>
-        <Route path="/students" element={<StudentLandingPage />} />
 
+
+        <Route element={<ProtectedRoute allowedRole="Student" />}>
+          <Route path="/students" element={<StudentLandingPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/profile/edit" element={<EditProfilePage />} />
           <Route path="/projects/me" element={<MyProjectsPage />} />
           <Route path="/projects/me/new" element={<ProjectFormPage />} />
           <Route path="/projects/:id/edit" element={<ProjectFormPage />} />
-          
+
         </Route>
 
         {/* Recruiter-only routes */}
+
         <Route element={<ProtectedRoute allowedRole="Recruiter" />}>
+          <Route path="/recruiter" element={<RecruiterLandingPage />} />
           <Route path="/browse" element={<BrowsePage />} />
           <Route path="/browse/:id" element={<ProjectDetailPage />} />
           <Route path="/recruiter/profile" element={<RecruiterProfilePage />} />

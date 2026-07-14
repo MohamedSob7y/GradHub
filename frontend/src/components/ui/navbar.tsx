@@ -49,7 +49,7 @@ export default function Navbar() {
                                             break;
 
                                         case "For Recruiters":
-                                            navigate("/browse");
+                                            navigate("/recruiter");
                                             break;
 
                                         case "Projects":
