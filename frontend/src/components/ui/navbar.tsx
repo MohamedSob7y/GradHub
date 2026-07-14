@@ -37,7 +37,35 @@ export default function Navbar() {
                         return (
                             <button
                                 key={item.name}
-                                onClick={() => setActiveTab(item.name)}
+                                onClick={() => {
+                                    setActiveTab(item.name);
+                                    switch (item.name) {
+                                        case "Home":
+                                            navigate("/");
+                                            break;
+
+                                        case "For Students":
+                                            navigate("/students");
+                                            break;
+
+                                        case "For Recruiters":
+                                            navigate("/browse");
+                                            break;
+
+                                        case "Projects":
+                                            navigate("/projects/me");
+                                            break;
+                                        case "About":
+                                            window.scrollTo({
+                                                top: document.body.scrollHeight,
+                                                behavior: "smooth",
+                                            });
+                                            break;
+
+                                        default:
+                                            break;
+                                    }
+                                }}
                                 onMouseEnter={() => setHoveredTab(item.name)}
                                 onMouseLeave={() => setHoveredTab(null)}
                                 className={`flex pb-1 items-center gap-2 border-b-2 transition-all duration-200 cursor-pointer text-sm font-medium
